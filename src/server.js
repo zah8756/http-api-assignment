@@ -24,11 +24,7 @@ const onRequest = (request, response) => {
   const types = request.headers.accept.split(',');
   const params = query.parse(parseURL.query);
   if (urlStruct[parseURL.pathname]) {
-    if (parseURL.pathname === '/badRequest' || parseURL.pathname === '/unauthorized') {
-      urlStruct[parseURL.pathname](request, response, types, params);
-    } else {
-      urlStruct[parseURL.pathname](request, response, types);
-    }
+    urlStruct[parseURL.pathname](request, response, types, params);
   } else {
     urlStruct[404](request, response, types);
   }
